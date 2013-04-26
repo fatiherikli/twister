@@ -4,7 +4,7 @@ monkey.patch_all()
 import uuid
 import json
 import argparse
-import collections
+from collections import defaultdict
 
 from ws4py.server.geventserver import WebSocketWSGIApplication, WSGIServer
 from ws4py.websocket import WebSocket
@@ -36,7 +36,7 @@ class Channel(list):
 
 
 class Twister(WebSocket):
-    channels = collections.defaultdict(Channel)
+    channels = defaultdict(Channel)
 
     def opened(self):
         self.welcome()
