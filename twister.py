@@ -27,12 +27,10 @@ SERVER_IDENT = "twister"
 
 
 class Channel(list):
-    subscribe = list.append
-    unsubscribe = list.remove
 
     def publish(self, message, exclude=None):
         for client in self:
-            if client is exclude:
+            if exclude is client:
                 continue
             client.send(message)
 
@@ -67,15 +65,15 @@ class Twister(WebSocket):
                         exclude=self if exclude_me else None)
 
     def subscribe(self, channel):
-        self.channels[channel].subscribe(self)
+        self.channels[channel].append(self)
 
     def unsubscribe(self, channel):
-        self.channels[channel].unsubscribe(self)
+        self.channels[channel].remove(self)
 
     def closed(self, code, reason=None):
         for channel in self.channels.itervalues():
             if self in channel:
-                channel.unsubscribe(self)
+                channel.remove(self)
 
     def generate_session_id(self):
         return str(uuid.uuid4())
