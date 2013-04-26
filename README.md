@@ -5,6 +5,8 @@ WORK IN PROGRESS.
 WAMP is an open WebSocket subprotocol that provides two asynchronous
 messaging patterns: RPC and PubSub.
 
+More information: <http://wamp.ws/spec>
+
 
 ### What is Twister?
 
