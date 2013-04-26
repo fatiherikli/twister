@@ -26,18 +26,12 @@ PROTOCOL_VERSION = 1
 SERVER_IDENT = "twister"
 
 
-class Channel(object):
-    def __init__(self):
-        self.clients = []
-
-    def subscribe(self, client):
-        self.clients.append(client)
-
-    def unsubscribe(self, client):
-        self.clients.remove(client)
+class Channel(list):
+    subscribe = list.append
+    unsubscribe = list.remove
 
     def publish(self, message):
-        for client in self.clients:
+        for client in self:
             client.send(message)
 
 
@@ -77,7 +71,7 @@ class Twister(WebSocket):
 
     def closed(self, code, reason=None):
         for channel in self.channels.itervalues():
-            if self in channel.clients:
+            if self in channel:
                 channel.unsubscribe(self)
 
     def generate_session_id(self):
