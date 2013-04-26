@@ -30,8 +30,10 @@ class Channel(list):
     subscribe = list.append
     unsubscribe = list.remove
 
-    def publish(self, message):
+    def publish(self, message, exclude=None):
         for client in self:
+            if client is exclude:
+                continue
             client.send(message)
 
 
@@ -59,9 +61,10 @@ class Twister(WebSocket):
                    PROTOCOL_VERSION,
                    SERVER_IDENT])
 
-    def publish(self, channel_name, message):
+    def publish(self, channel_name, message, exclude_me=False):
         channel = self.channels[channel_name]
-        channel.publish([MESSAGES.EVENT, channel_name, message])
+        channel.publish([MESSAGES.EVENT, channel_name, message],
+                        exclude=self if exclude_me else None)
 
     def subscribe(self, channel):
         self.channels[channel].subscribe(self)
