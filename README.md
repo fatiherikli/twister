@@ -10,4 +10,15 @@ More information: <http://wamp.ws/spec>
 
 ### What is Twister?
 
-Twister is a server & client (not yet) implementation of WAMP.
+Twister is a pub/sub implementation for websockets inspired by Wamp.
+
+
+### Running
+
+    $ python -m twister
+    Twister running on 127.0.0.1:9000
+
+
+Now you can interact with twister with twister.js
+
+<http://github.com/fatiherikli/twister.js>
