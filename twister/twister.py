@@ -1,12 +1,7 @@
-from gevent import monkey
-monkey.patch_all()
-
 import uuid
 import json
-import argparse
 from collections import defaultdict
 
-from ws4py.server.geventserver import WebSocketWSGIApplication, WSGIServer
 from ws4py.websocket import WebSocket
 
 from utils import head, enum, tail, inverse
@@ -81,16 +76,3 @@ class Twister(WebSocket):
     def raise_not_implemented(self):
         raise NotImplementedError("Twister supports only the pub/sub "
                                   "implementation of WAMP spec for now.")
-
-if __name__ == '__main__':
-    from ws4py import configure_logger
-    configure_logger()
-
-    parser = argparse.ArgumentParser(description='Twister Server')
-    parser.add_argument('--host', default='127.0.0.1')
-    parser.add_argument('-p', '--port', default=9000, type=int)
-    args = parser.parse_args()
-
-    server = WSGIServer((args.host, args.port),
-                        WebSocketWSGIApplication(handler_cls=Twister))
-    server.serve_forever()
