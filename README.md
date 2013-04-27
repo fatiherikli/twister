@@ -8,9 +8,7 @@ messaging patterns: RPC and PubSub.
 More information: <http://wamp.ws/spec>
 
 
-### What is Twister?
-
-Twister is a pub/sub implementation for websockets inspired by Wamp.
+Twister implements a subset (Pub/Sub) of WAMP.
 
 
 ### Running
@@ -22,3 +20,17 @@ Twister is a pub/sub implementation for websockets inspired by Wamp.
 Now you can interact with twister with twister.js
 
 <http://github.com/fatiherikli/twister.js>
+
+### Example
+
+```javascript
+
+var twister = new Twister("ws://localhost:9000/ws");
+twister.connect(function () {
+    twister.subscribe('articles/23', function (channel, message) {
+        console.log(message);
+    });
+
+    twister.publish('articles/23', "Hello!");
+});
+````
