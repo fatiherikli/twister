@@ -17,7 +17,7 @@ Twister implements a subset (Pub/Sub) of WAMP.
     Twister running on 127.0.0.1:9000
 
 
-Now you can interact with twister with twister.js
+Now you can interact with twister using twister.js
 
 <http://github.com/fatiherikli/twister.js>
 
