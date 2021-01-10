@@ -16,7 +16,7 @@ Twister implements a subset (Pub/Sub) of WAMP.
 
 Now you can interact with twister using twister.js
 
-<http://github.com/fatiherikli/twister.js>
+<https://github.com/fatiherikli/twister.js>
 
 ### Example
 
