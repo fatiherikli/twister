@@ -3,7 +3,7 @@
 WAMP is an open WebSocket subprotocol that provides two asynchronous
 messaging patterns: RPC and PubSub.
 
-More information: <https://wamp-proto.org/_static/gen/wamp_latest.html>
+More information: <https://en.wikipedia.org/wiki/Web_Application_Messaging_Protocol>
 
 
 Twister implements a subset (Pub/Sub) of WAMP.
